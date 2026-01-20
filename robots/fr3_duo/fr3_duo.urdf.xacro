@@ -6,7 +6,7 @@
 
   <!-- Define arguments -->
   <!-- The IDs of the robot models to be used -->
-  <xacro:arg name="robot_types" default="['fr3','fr3']" />
+  <xacro:arg name="robot_types" default="['fr3v2','fr3v2']" />
   <xacro:property name="robot_types_list" value="${$(arg robot_types)}" />
   
   <!-- Don't print a prefix for joints, visuals, and links? -->

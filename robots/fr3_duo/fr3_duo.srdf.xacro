@@ -4,7 +4,7 @@
   <xacro:include filename="$(find franka_description)/robots/common/franka_arm.srdf.xacro"/>
 
   <!-- The IDs of the robot models to be used -->
-  <xacro:arg name="robot_types" default="['fr3','fr3']" />
+  <xacro:arg name="robot_types" default="['fr3v2','fr3v2']" />
   <xacro:property name="robot_types_list" value="${$(arg robot_types)}" />
 
   <!-- Should an end-effector be mounted at the flange?" -->
