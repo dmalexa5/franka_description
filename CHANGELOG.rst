@@ -2,17 +2,23 @@
 Changelog for package franka_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-2.3.2 (2026-01-22)
+UNRELEASED
 ----------
+
+* feat: fr3_duo srdf added to franka description
+* feat: fr3_duo urdf now supports different arm prefixes
+
+2.3.2 (2026-01-22)
+------------------
 
 * chore: renamed meshes/robot_arms > meshes/robots to support tmr v0.2
 
 2.3.1 (2026-01-16)
-----------
+------------------
 * feat: mobile_fr3_duo_v0_2 added to franka description
 
 2.3.0 (2025-12-19)
-----------
+------------------
 * feat: tmrv0_2 added to franka description
 * feat: arm_id replaced by robot_type
 * feat: pass is_async argument to franka_arm.ros2_control.xacro

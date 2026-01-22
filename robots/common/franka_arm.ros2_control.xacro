@@ -105,7 +105,6 @@
       <xacro:general_purpose_io prefix="joint_3_position" command_interface="elbow_command" index="0"/>
       <xacro:general_purpose_io prefix="joint_4_sign" command_interface="elbow_command" index="1"/>
 
-
     </ros2_control>
     <xacro:if value="${gazebo}">
       <gazebo>
