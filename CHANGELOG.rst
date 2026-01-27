@@ -2,6 +2,11 @@
 Changelog for package franka_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+UNRELEASED
+----------
+* chore: tmrv0_2 replace lidar with mounting point and add imu mounting point
+* fix: mounting point typo in tmrv0_2.xacro
+
 2.4.0 (2026-01-26)
 ----------
 
