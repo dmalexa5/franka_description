@@ -25,6 +25,7 @@
             fake_sensor_commands
             is_async:=false
             thread_priority:=50
+            hand
             gazebo
             gazebo_effort
             robot_namespace">
@@ -49,7 +50,7 @@
         </xacro:if>
 
         <xacro:if value="${use_fake_hardware == 0 and gazebo == 0}">
-          <!-- For real hardware, perhaps combine, but for now, assume gazebo -->
+          <!-- For real hardware but for now, assume gazebo always-->
         </xacro:if>
       </hardware>
 
@@ -201,8 +202,13 @@
       <xacro:general_purpose_io prefix="${arm2_prefix}_wx" command_interface="cartesian_velocity" index="3"/>
       <xacro:general_purpose_io prefix="${arm2_prefix}_wy" command_interface="cartesian_velocity" index="4"/>
       <xacro:general_purpose_io prefix="${arm2_prefix}_wz" command_interface="cartesian_velocity" index="5"/>
-
+      
+      <xacro:if value="${gazebo and hand}">
+        <xacro:configure_arm_joint joint_name="${arm1_prefix}_${arm1_type}_finger_joint1" initial_position="0.0" gazebo="${gazebo}" gazebo_effort="${gazebo_effort}"/>
+        <xacro:configure_arm_joint joint_name="${arm2_prefix}_${arm2_type}_finger_joint1" initial_position="0.0" gazebo="${gazebo}" gazebo_effort="${gazebo_effort}"/>
+      </xacro:if>
     </ros2_control>
+
     <xacro:if value="${gazebo}">
       <gazebo>
         <plugin filename="gz_ros2_control-system" name="gz_ros2_control::GazeboSimROS2ControlPlugin">

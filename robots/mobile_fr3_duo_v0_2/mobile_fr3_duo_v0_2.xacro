@@ -28,6 +28,14 @@
     <xacro:include filename="$(find franka_description)/robots/fr3_duo/fr3_duo_mount/fr3_duo_mount.xacro" />
     <xacro:include filename="$(find franka_description)/robots/tmrv0_2/tmrv0_2.xacro"/>
     <xacro:include filename="$(find franka_description)/robots/mobile_fr3_duo_v0_2/mobile_fr3_duo.ros2_control.xacro"/>
+    <xacro:include filename="$(find franka_description)/robots/fr3_duo/fr3_duo_head.xacro" />
+
+    <xacro:if value="${gazebo}">
+        <xacro:property name="ros_control_flag_for_real_hardware" value ="false"/>
+    </xacro:if>
+    <xacro:unless value="${gazebo}">
+         <xacro:property name="ros_control_flag_for_real_hardware" value ="true"/>
+    </xacro:unless>
 
     <xacro:property name="number_of_robots" value = "3"/>
     <xacro:property name="arm_prefixes_list" value="${['','left','right']}" /> 
@@ -37,7 +45,7 @@
         <xacro:if value="${robot_type_i == 'tmrv0_2'}">
                 <xacro:tmrv0_2 mobile_robot_type="${robot_type_i}"
                     robot_ip="${robot_ips_list[i]}"
-                    ros2_control="false"
+                    ros2_control="${ros_control_flag_for_real_hardware}"
                     use_fake_hardware="${use_fake_hardware}"
                     fake_sensor_commands="${fake_sensor_commands}"
                     reduced_version="${reduced_version}"
@@ -94,6 +102,11 @@
             <xacro:mount name="mount" parent="franka_spine_support" inertials="${xacro.load_yaml('$(find franka_description)/robots/fr3_duo/fr3_duo_mount/inertials.yaml')}">
                 <origin xyz="0 0 0" rpy="0 0 0" />
             </xacro:mount>
+
+            <xacro:head name="head" parent="mount_link">
+                <origin xyz="0 0 0.167" rpy="0 0 0" />
+            </xacro:head>
+
         </xacro:if>
         <xacro:unless value="${robot_type_i == 'tmrv0_2'}">
             <xacro:if value="${use_arms}">
@@ -133,7 +146,7 @@
                                 tcp_rpy="${tcp_rpy}"
                                 safety_distance="${safety_distance}"
                                 with_sc="${with_sc}"
-                                ros2_control="false"
+                                ros2_control="${ros_control_flag_for_real_hardware}"
                                 robot_ip="${robot_ips_list[i]}"
                                 use_fake_hardware="${use_fake_hardware}"
                                 fake_sensor_commands="${fake_sensor_commands}"
@@ -151,15 +164,18 @@
     </xacro:macro>
     <xacro:loop i="0"/>
 
-    <xacro:mobile_fr3_duo_ros2_control mobile_robot_type="tmrv0_2"
-                                        robot_types="${robot_types_list}"
-                                        arm_prefixes="${arm_prefixes_list}"
-                                        robot_ips="${robot_ips_list}"
-                                        use_fake_hardware="$(arg use_fake_hardware)"
-                                        fake_sensor_commands="$(arg fake_sensor_commands)"
-                                        gazebo="$(arg gazebo)"
-                                        gazebo_effort="$(arg gazebo_effort)"
-                                        robot_namespace=""/>             
+    <xacro:if value="${gazebo}">
+        <xacro:mobile_fr3_duo_ros2_control mobile_robot_type="tmrv0_2"
+                                            robot_types="${robot_types_list}"
+                                            arm_prefixes="${arm_prefixes_list}"
+                                            robot_ips="${robot_ips_list}"
+                                            hand="${hand}"
+                                            use_fake_hardware="${use_fake_hardware}"
+                                            fake_sensor_commands="${fake_sensor_commands}"
+                                            gazebo="${gazebo}"
+                                            gazebo_effort="${gazebo_effort}"
+                                            robot_namespace=""/>       
+    </xacro:if>      
     
   </xacro:macro>
 </robot>
