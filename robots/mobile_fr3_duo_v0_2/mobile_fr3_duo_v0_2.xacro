@@ -34,7 +34,7 @@
         <xacro:property name="ros_control_flag_for_real_hardware" value ="false"/>
     </xacro:if>
     <xacro:unless value="${gazebo}">
-         <xacro:property name="ros_control_flag_for_real_hardware" value ="true"/>
+         <xacro:property name="ros_control_flag_for_real_hardware" value ="${ros2_control}"/>
     </xacro:unless>
 
     <xacro:property name="number_of_robots" value = "3"/>

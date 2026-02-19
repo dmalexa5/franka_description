@@ -65,10 +65,10 @@
   <xacro:property name="prefix" value="$(arg arm_prefix)"/>
   <xacro:property name="modified_prefix" value="${prefix + '_' if prefix else ''}"/>
 
-  <!--Position offset with respect the world-->
+  <!--Position offset with respect to the world-->
   <xacro:arg name="xyz" default="0 0 0" />
 
-  <!--Rotation offset with respect the world-->
+  <!--Rotation offset with respect to the world-->
   <xacro:arg name="rpy" default="0 0 0" />
 
   <xacro:if value="$(arg gazebo)">
