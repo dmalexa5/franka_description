@@ -129,28 +129,27 @@
     <joint name="right_mounting_point_joint" type="fixed">
       <parent link="base_link" />
       <child link="right_mounting_point" />
-      <origin xyz="0.0 0.272712 0.1145" rpy="${pi} 0 ${pi/2}" />
+      <origin xyz="0.0 -0.272712 0.1145" rpy="${pi} 0 -${pi/2}" />
     </joint>
     <link name="left_mounting_point"/>
     <joint name="left_mounting_point_joint" type="fixed">
       <parent link="base_link" />
       <child link="left_mounting_point" />
-      <origin xyz="0.0 -0.272712 0.1145" rpy="${pi} 0 -${pi/2}" />
+      <origin xyz="0.0 0.272712 0.1145" rpy="${pi} 0 ${pi/2}" />
     </joint>
-
     <!-- Lidars -->
     <link name="lidar_front_mounting_point"/>
     <joint name="lidar_front_mounting_point_joint" type="fixed">
       <parent link="base_link" />
       <child link="lidar_front_mounting_point" />
-      <origin xyz="0.3275 0.2175 0.19065" rpy="0 ${pi} ${pi*3/4}" />
+      <origin xyz="0.3275 0.2175 0.19065" rpy="0 0 ${pi/4}" />
     </joint>
 
     <link name="lidar_rear_mounting_point"/>
     <joint name="lidar_rear_mounting_point_joint" type="fixed">
       <parent link="base_link" />
       <child link="lidar_rear_mounting_point" />
-      <origin xyz="-0.3275 -0.2175 0.19065" rpy="0 ${pi} ${pi*7/4}" />
+      <origin xyz="-0.3275 -0.2175 0.19065" rpy="0 0 ${pi*5/4}" />
     </joint>
     
     <xacro:if value="${ros2_control}">
