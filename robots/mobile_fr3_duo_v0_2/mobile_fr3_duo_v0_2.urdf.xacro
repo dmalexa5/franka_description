@@ -60,6 +60,12 @@
   <!-- Name of the description package -->
   <xacro:arg name="description_pkg" default="franka_description"/>
 
+  <!-- Are the robots using the async hardware interface? -->
+  <xacro:arg name="is_async" default="false"/>
+
+  <!-- Thread priority for the hardware interface -->
+  <xacro:arg name="thread_priority" default="50"/>
+
   <!-- The name of the frame to which the robot is connected. -->
   <xacro:arg name="connected_to" default="base"/>
 
@@ -99,5 +105,7 @@
     tcp_xyz="$(arg tcp_xyz)"
     tcp_rpy="$(arg tcp_rpy)"
     safety_distance="$(arg safety_distance)"
-    with_sc="$(arg with_sc)"/>
+    with_sc="$(arg with_sc)"
+    is_async="$(arg is_async)"
+    thread_priority="$(arg thread_priority)"/>
 </robot>
