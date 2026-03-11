@@ -91,8 +91,8 @@
 
       <xacro:property name="arm1_type" value="${robot_types_list[1]}"/>
       <xacro:property name="arm2_type" value="${robot_types_list[2]}"/>
-      <xacro:property name="arm1_prefix" value="${arm_prefixes_list[1]}"/>
-      <xacro:property name="arm2_prefix" value="${arm_prefixes_list[2]}"/>
+      <xacro:property name="arm1_prefix" value="${arm_prefixes_list[0]}"/>
+      <xacro:property name="arm2_prefix" value="${arm_prefixes_list[1]}"/>
 
       <!-- Left arm -->
       <xacro:configure_arm_joint joint_name="${arm1_prefix}_${arm1_type}_joint1" initial_position="0.0"
