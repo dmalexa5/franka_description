@@ -9,6 +9,7 @@ UNRELEASED
 * fix: mobile_fr3_duo.urdf.xacro forwards is_async and thead_priority to ros2_control parts
 * chore: refactored franka_arm.xacro configs
 * fix: arm_prefixes index fixed for mfr3duo
+* fix: corrected fr3_duo base mount for gazebo
 
 2.6.0 (2026-03-02)
 ------------------

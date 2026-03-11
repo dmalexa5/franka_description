@@ -38,10 +38,14 @@ def get_urdf_xacro(robot_type: str):
         robot_type + '.urdf.xacro')
 
 
+@pytest.mark.parametrize('gazebo', ['true', 'false'])
 @pytest.mark.parametrize('robot_type', ROBOT_TYPES)
-def test_urdf_is_well_formed(robot_type: str):
+def test_urdf_is_well_formed(robot_type: str, gazebo: str):
     urdf = xacro.process_file(
         get_urdf_xacro(robot_type),
+        mappings = {
+            'gazebo' : gazebo
+        }
     ).toxml()
     root = ET.fromstring(urdf)
     assert root.tag == "robot", "urdf must have topmost level robot tag"

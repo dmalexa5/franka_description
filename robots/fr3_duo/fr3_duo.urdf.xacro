@@ -85,7 +85,7 @@
     <joint name="world_joint" type="fixed">
       <origin xyz="$(arg xyz)" rpy="$(arg rpy)"/>
       <parent link="world"/>
-      <child link="${modified_prefix}$(arg robot_type)_link0"/>
+      <child link="${base_mount_str}"/>
     </joint>
   </xacro:if>
 
