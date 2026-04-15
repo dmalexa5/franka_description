@@ -42,20 +42,16 @@ def get_urdf_xacro(robot_type: str):
         get_package_share_directory('franka_description'),
         'robots',
         robot_type,
-        robot_type + '.urdf.xacro')
+        robot_type + '.urdf.xacro',
+    )
 
 
 @pytest.mark.parametrize('gazebo', ['true', 'false'])
 @pytest.mark.parametrize('robot_type', ROBOT_TYPES)
 def test_urdf_is_well_formed(robot_type: str, gazebo: str):
-    if gazebo == 'true' and robot_type == 'mobile_fr3_duo_v0_2' and not _has_gazebo_bringup:
+    if gazebo == 'true' and not _has_gazebo_bringup:
         pytest.skip('franka_gazebo_bringup package not available')
-    urdf = xacro.process_file(
-        get_urdf_xacro(robot_type),
-        mappings={
-            'gazebo': gazebo
-        }
-    ).toxml()
+    urdf = xacro.process_file(get_urdf_xacro(robot_type), mappings={'gazebo': gazebo}).toxml()
     root = ET.fromstring(urdf)
     assert root.tag == 'robot', 'urdf must have topmost level robot tag'
     assert len(root) > 0, 'urdf cannot be empty'
@@ -82,12 +78,12 @@ def test_with_ee(robot_type: str):
         get_urdf_xacro(robot_type), mappings={'ee_id': 'franka_hand'}
     ).toxml()
     root = ET.fromstring(urdf)
-    assert root.find(
-        f".//joint[@name='{robot_type}_finger_joint1']") is not None, \
+    assert root.find(f".//joint[@name='{robot_type}_finger_joint1']") is not None, (
         'urdf must contain the finger 1 joint tag'
-    assert root.find(
-        f".//joint[@name='{robot_type}_finger_joint2']") is not None, \
+    )
+    assert root.find(f".//joint[@name='{robot_type}_finger_joint2']") is not None, (
         'urdf must contain the finger 2 joint tag'
+    )
 
 
 @pytest.mark.parametrize('robot_type', ROBOT_TYPES)
@@ -107,10 +103,8 @@ def test_check_interfaces(robot_type: str):
 def test_load_with_fake_hardware(robot_type: str):
     """Test of use_fake_hardware parameter for ros2_control hardware interface."""
     urdf = xacro.process_file(
-        get_urdf_xacro(robot_type),
-        mappings={
-            'ros2_control': 'true',
-            'use_fake_hardware': 'true'}).toxml()
+        get_urdf_xacro(robot_type), mappings={'ros2_control': 'true', 'use_fake_hardware': 'true'}
+    ).toxml()
     assert urdf.find('mock_components/GenericSystem') is not None
 
 
