@@ -2,8 +2,8 @@
 Changelog for package franka_description
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-UNRELEASED
-----------
+2.7.0 (2026-05-04)
+------------------
 
 * feat: add GitHub Actions workflow to generate and release URDFs for fr3_duo, mobile_fr3_duo_v0_2, and fr3v2_1
 * docu: Added the docu to FCI docs
